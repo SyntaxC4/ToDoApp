@@ -1,19 +1,19 @@
 ﻿'use strict';
-var apiPath = "https://donnam-multichannel.azurewebsites.net";
+var apiPath = "http://mobilehol-code.azurewebsites.net/tables";
 multiChannelToDoApp
     .factory('toDoService', ['$http', function ($http) {
         return {
 
             getItems: function () {
-                return $http.get(apiPath + '/api/ToDoItems');
+                return $http.get(apiPath + '/TodoItem');
             },
 
             add: function (id, task) {
-                return $http.post(apiPath + '/api/ToDoItems', { "Id": id + 1, "Text": task, "Complete": false });
+                return $http.post(apiPath + '/TodoItem', { text": task, "complete": false });
             },
 
             complete: function (item) {
-                return $http.put(apiPath + '/api/ToDoItems/' + item.Id, { "Id": item.Id, "Text": item.Text, "Complete": true });
+                return $http.put(apiPath + '/TodoItem/' + item.Id, { "id": item.Id, "text": item.Text, "complete": true });
             }
         }
     }]);
